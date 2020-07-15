@@ -47,7 +47,7 @@
    </property>
    <widget class="QMenu" name="menufile">
     <property name="title">
-     <string>Chart</string>
+     <string>График</string>
     </property>
     <addaction name="actionAdd_new_chart"/>
     <addaction name="actionOptions"/>
@@ -71,21 +71,35 @@
    <addaction name="actionCreate_owm_window"/>
   </widget>
   <action name="actionAdd_new_chart">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/img/new.jpg</normaloff>:/res/img/new.jpg</iconset>
+   </property>
    <property name="text">
-    <string>Add new chart</string>
+    <string>Новая вкладка</string>
    </property>
   </action>
   <action name="actionOptions">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/img/options.jpg</normaloff>:/res/img/options.jpg</iconset>
+   </property>
    <property name="text">
-    <string>Options</string>
+    <string>Настройки</string>
    </property>
   </action>
   <action name="actionCreate_owm_window">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/res/img/own_wnd2.jpg</normaloff>:/res/img/own_wnd2.jpg</iconset>
+   </property>
    <property name="text">
-    <string>Create owm window</string>
+    <string>В отдельном окне</string>
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

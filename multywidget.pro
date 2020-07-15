@@ -21,7 +21,6 @@ SOURCES += \
     mainchart.cpp \
     options.cpp \
     twatchchart.cpp \
-    twatchseries.cpp \
     twatchwindow.cpp
 
 HEADERS += \
@@ -29,7 +28,6 @@ HEADERS += \
     mainchart.h \
     options.h \
     twatchchart.h \
-    twatchseries.h \
     twatchwindow.h
 
 FORMS += \
@@ -43,3 +41,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resources.qrc

@@ -4,6 +4,9 @@
 #include <QWidget>
 #include <QGridLayout>
 
+#include <QWheelEvent>
+#include <QKeyEvent>
+
 #include <QString>
 
 //библиотеки QtCharts
@@ -32,10 +35,18 @@ public:
 
     QChartView *chartView;
     QChart *chart;
-    QValueAxis *axisX = new QValueAxis();
-    QValueAxis *axisY = new QValueAxis();
+    QValueAxis *axisX;
+    QValueAxis *axisY;
 
     Ui::TWatchChart *ui;
+
+private:
+    bool isCtrlPressed = false;
+
+private slots:
+    void wheelEvent(QWheelEvent * event);
+    void keyPressEvent(QKeyEvent *event);
+    void keyReleaseEvent(QKeyEvent *event);
 };
 
 #endif // TWATCHCHART_H

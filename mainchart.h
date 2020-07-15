@@ -5,32 +5,28 @@
 #include <QVector>
 #include <QRandomGenerator>
 
-#include "options.h"
-#include "ui_options.h"
-#include "ui_twatchwindow.h"
-#include "chartwindow.h"
-
 //классы графиков
 #include "twatchwindow.h"
+#include "ui_twatchwindow.h"
 #include "twatchchart.h"
-#include "twatchseries.h"
+#include "options.h"
+#include "ui_options.h"
+#include "chartwindow.h"
 
 //библиотеки QtCharts
 #include <QValueAxis>
 #include <QLineSeries>
-#include <QValueAxis>
 #include <QChart>
 #include <QChartView>
-#include <QtCharts/QLegend>
 
-using namespace QtCharts;
-
+//что бы знал что они есть
 class Options;
 class TWatchWindow;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainChart; }
 QT_END_NAMESPACE
+using namespace QtCharts;
 
 class MainChart : public QMainWindow
 {
@@ -41,25 +37,22 @@ public:
     ~MainChart();
 
 private slots:
-    void on_actionOptions_triggered();
+    void on_actionOptions_triggered();              //открыть окно опций
+    void on_actionCreate_owm_window_triggered();    //график в новом окне
+    void on_tabWidget_tabCloseRequested(int index); //закрыть вкладку
+    void on_actionAdd_new_chart_triggered();        //новая вкладка
 
-    void on_actionCreate_owm_window_triggered();
-
-
-    void on_tabWidget_tabCloseRequested(int index);
-
-    void on_actionAdd_new_chart_triggered();
-
+    void on_tabWidget_currentChanged(int index);
 
 private:
     Ui::MainChart *ui;
 
-    QVector <TWatchWindow*> tab;
-    QVector <TWatchSeries*> series;
+    QVector <TWatchWindow*> tab;                    //вкладки
+    QVector <QLineSeries*> series;                  //серии (данные)
+    //ChartWindow *chart_wnd;                       //окно отдельного графика
 
-    Options *option_wnd;    //окно опций
-    //ChartWindow *chart_wnd; //окно отдельного графика
-
+    Options *option_wnd;                            //окно опций
+    int currentTabIndex;
     void loadOptionSeries();
     void updateOptionSeries(QString seriesName);
 
@@ -67,10 +60,10 @@ private:
     void updateSeriesColor(int index);
     void updateSeriesLineType(int index);
     void updateSeriesName(int index);
+
 public slots:
-    void updateOptions(); //обновить данные о серии
-    //void updateLayout();
-
-
+    void uploadOptions(); //обновить данные о серии
+    void setAllSeries();
+    void setAllCharts();
 };
 #endif // MAINCHART_H

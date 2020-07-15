@@ -7,21 +7,15 @@
 
 #include "options.h"
 #include "chartwindow.h"
-
-
 #include "twatchchart.h"
 #include "ui_twatchchart.h"
-#include "twatchseries.h"
+
 
 //библиотеки QtCharts
 #include <QValueAxis>
 #include <QLineSeries>
-#include <QValueAxis>
 #include <QChart>
 #include <QChartView>
-#include <QtCharts/QChartView>
-#include <QtCharts/QLegend>
-#include <QtCharts/QLineSeries>
 
 using namespace QtCharts;
 
@@ -37,16 +31,25 @@ public:
     explicit TWatchWindow(QWidget *parent = nullptr);
     ~TWatchWindow();
 
-    //QChartView *chartView;
     QVector <TWatchChart*> chartView;
+    QVector <QVector <QLineSeries*>> series;
+
 
     QGridLayout *grid;
     Ui::TWatchWindow *ui;
+
+     void createChart(QString chartName);
+     void addSeriesToChart(QLineSeries* series, TWatchChart* chartView);
 private:
     void createSingleLayout();
     void createRowLayout(int rowNumber);
     void createColLayout(int colNumber);
     void createGridLayout(int rowNumber, int colNumber);
+    void updateGrid();
+
+signals:
+    void updateChartList();
+    //void sendAllCharts(QVector <TWatchChart*> chartView);
 
 public slots:
     void updateLayout(QString layoutMthod, int rowNumber, int colNumber);
